@@ -29,7 +29,7 @@ mv videocdn-api/* .
 ```bash
 pip3 install -r requirements_minimal.txt
 ```
-Или так, если будете использовать аналитику и БД SQLite 
+Или так, если будете использовать аналитику и БД SQLite (будут также установлены aiosqlite и sqlalchemy) 
 ```bash
 pip3 install -r requirements.txt
 ```
