@@ -4,7 +4,7 @@
 
 | Переменная               | Тип         | По умолч.  | Пример                                                  | Описание                                                |
 | ------------------------ | ----------- | ---------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| bot_token                | str         | Нет        | bot_token: str = "123456:Thequickbrownfox01234"         | токен от вашего Telegram-бота
+| bot_token                | str         | Нет        | bot_token: str = "123456:Thequickbrownfox01234"         | Токен от вашего Telegram-бота
 | owners_ids               | List\[int\] | Нет        | owners_ids: List\[int\] = \[100, 200, 444\]             | ID тех, кто управляет ботом   
 | restrict_mode            | bool        | False      | restrict_mode: bool = False                             | Переключение "ограниченного" режима. Если включено, ботом пользоваться смогут только те, кто входят в число owners_ids
 | dispatcher_skip_updates  | bool        | True       | dispatcher_skip_updates: bool = True                    | Пропускать накопившиеся до запуска обновления Telegram?
@@ -14,11 +14,11 @@
 ## VideoCDN
 | Переменная               | Тип         | По умолч.  | Пример                                                  | Описание                                                |
 | ------------------------ | ----------- | ---------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| videocdn_token           | str         | Нет        | videocdn_token: str = "Thequickbrownfox01234"           | токен от вашего VideoCDN-аккаунта. Получить можно в ЛК.
+| videocdn_token           | str         | Нет        | videocdn_token: str = "Thequickbrownfox01234"           | Токен от вашего VideoCDN-аккаунта. Получить можно в ЛК.
 | videocdn_custom_settings | bool        | False      | videocdn_custom_settings: bool = True                   | Использовать кастомные настройки для videocdn_api? (указанные ниже)
 | videocdn_proxy_list      | List[str]   | \[\]       | videocdn_proxy_list: List[str] = \["http://127.0.0.1:8888"\]| Любые совместимые с aiohttp прокси (HTTP и некоторые HTTPS). При запросе к API будет выбираться случайный вариант.
 | videocdn_client_headers  | dict        | True       | videocdn_client_headers: dict = {"user-agent": "LYNX/GNU"}|  Любые дополнительные клиентские заголовки. Внимание: заголовок с токеном добавлять не нужно! Токен автоматически добавляется как GET-параметр.
-| videocdn_api_server      | str         |            | videocdn_api_server: str = 'https://altcdn.local/api'    | API сервер
+| videocdn_api_server      | str         |            | videocdn_api_server: str = 'https://altcdn.local/api'    | API-сервер videocdn.tv или совместимый
 
 ## База данных (аналитика)
 | Переменная               | Тип          | По умолч.  | Пример                                                                | Описание                                                |
