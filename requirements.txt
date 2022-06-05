@@ -1,0 +1,5 @@
+aiohttp
+aiogram~=2.*
+pydantic
+sqlalchemy
+aiosqlite
