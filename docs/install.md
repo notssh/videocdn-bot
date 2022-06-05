@@ -19,7 +19,7 @@ git clone https://github.com/notssh/videocdn-api/
 cd videocdn-api
 pip3 install -r requirements.txt
 ```
-4. Удалите ненужные файлы, переместите модуль videocdn_api на уровень выше; вернитесь в директорию с ботом;
+4. Удалите ненужные файлы, переместите модуль videocdn_api в директорию с ботом (в данном случае - на уровень выше); вернитесь в директорию с ботом;
 ```bash
 rm README.md
 rm requirements.txt
