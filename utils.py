@@ -13,7 +13,7 @@ def is_int(num):
 def format_links_html(data):
     media = []
     if data.imdb_id:
-        media.append(md.hlink('[IMDB]', f'https://www.imdb.com/find?q={data.imdb_id}/'))
+        media.append(md.hlink('[IMDB]', f'https://www.imdb.com/title/{data.imdb_id}/'))
     if data.kinopoisk_id:
         media.append(md.hlink('[Кинопоиск]', f'https://www.kinopoisk.ru/series/{data.kinopoisk_id}/'))
     if data.worldart_id:
