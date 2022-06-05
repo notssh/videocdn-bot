@@ -23,7 +23,7 @@
 ## База данных (аналитика)
 | Переменная               | Тип          | По умолч.  | Пример                                                                | Описание                                                |
 | ------------------------ | ------------ | ---------- | --------------------------------------------------------------------- | ------------------------------------------------------- |
-| database_url             | Optional[str]| None       | database_url: Optional[str] = "sqlite+aiosqlite:///./db/analytics.db" | Тип_базы+асинхронный_коннектор://путь/до/БД. Чтобы отключить, укажите None
+| database_url             | Optional[str]| None       | database_url: Optional[str] = "sqlite+aiosqlite:///./db/analytics.db" | Тип_базы+асинхронный_коннектор://путь/до/БД. Чтобы отключить, укажите None. [Подробнее про ДБ здесь](https://github.com/notssh/videocdn-bot/blob/main/docs/db.md).
 
 
 ## Логи
