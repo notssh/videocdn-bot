@@ -1,5 +1,5 @@
 aiohttp
-aiogram~=2.*
+aiogram
 pydantic
 sqlalchemy
 aiosqlite
