@@ -17,7 +17,7 @@
 | videocdn_token           | str         | Нет        | videocdn_token: str = "Thequickbrownfox01234"           | Токен от вашего VideoCDN-аккаунта. Получить можно в ЛК.
 | videocdn_custom_settings | bool        | False      | videocdn_custom_settings: bool = True                   | Использовать кастомные настройки для videocdn_api? (указанные ниже)
 | videocdn_proxy_list      | List[str]   | \[\]       | videocdn_proxy_list: List[str] = \["http://127.0.0.1:8888"\]| Любые совместимые с aiohttp прокси (HTTP и некоторые HTTPS). При запросе к API будет выбираться случайный вариант.
-| videocdn_client_headers  | dict        | True       | videocdn_client_headers: dict = {"user-agent": "LYNX/GNU"}|  Любые дополнительные клиентские заголовки. Внимание: заголовок с токеном добавлять не нужно! Токен автоматически добавляется как GET-параметр.
+| videocdn_client_headers  | dict        | {}         | videocdn_client_headers: dict = {"user-agent": "LYNX/GNU"}|  Любые дополнительные клиентские заголовки. Внимание: заголовок с токеном добавлять не нужно! Токен автоматически добавляется как GET-параметр.
 | videocdn_api_server      | str         |            | videocdn_api_server: str = 'https://altcdn.local/api'    | API-сервер videocdn.tv или совместимый
 
 ## База данных (аналитика)
