@@ -19,11 +19,11 @@ git clone https://github.com/notssh/videocdn-api/
 cd videocdn-api
 pip3 install -r requirements.txt
 ```
-4. Удалите ненужные файлы, переместите модуль videocdn-api на уровень выше; вернитесь в директорию с ботом;
+4. Удалите ненужные файлы, переместите модуль videocdn_api на уровень выше; вернитесь в директорию с ботом;
 ```bash
 rm README.md
 rm requirements.txt
-mv videocdn-api/* .
+mv videocdn_api ../
 cd ..
 ```
 5. Установите зависимости для videocdn-bot:
@@ -32,7 +32,7 @@ pip3 install -r requirements_minimal.txt
 ```
 Или так, если будете использовать аналитику и БД SQLite (будут также установлены aiosqlite и sqlalchemy) 
 ```bash
-pip3 install -r requirements.txt
+pip3 install -r requirements_sqlite.txt
 ```
 [Важная деталь насчет БД](https://github.com/notssh/videocdn-bot/blob/main/docs/db.md)  
 6. [Отредактируйте consts.py](https://github.com/notssh/videocdn-bot/blob/main/docs/consts.md)  
@@ -40,3 +40,5 @@ pip3 install -r requirements.txt
 ```bash
 python3 main.py
 ```
+
+Внимание! Должны существовать полные пути до логов и базы данных, со всеми поддиректориями! Иначе выдаст ошибку FileNotFoundError: [Errno 2] No such file or directory.
