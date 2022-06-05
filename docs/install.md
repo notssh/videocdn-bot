@@ -33,6 +33,7 @@ pip3 install -r requirements_minimal.txt
 ```bash
 pip3 install -r requirements.txt
 ```
+[Важная деталь насчет БД](https://github.com/notssh/videocdn-bot/blob/main/docs/db.md)  
 6. [Отредактируйте consts.py](https://github.com/notssh/videocdn-bot/blob/main/docs/consts.md)
 7. Запуск:
 ```bash
