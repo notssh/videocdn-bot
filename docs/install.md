@@ -13,7 +13,7 @@ cd videocdn-bot
 python3 -m venv venv
 venv/bin/activate
 ```
-3. Клонируйте репозиторий [videocdn-api](https://github.com/notssh/videocdn-api/); установите зависимости для этого модуля; вернитесь в директорию videocdn-bot.
+3. Клонируйте репозиторий [videocdn-api](https://github.com/notssh/videocdn-api/); установите зависимости для этого модуля;
 ```bash
 git clone https://github.com/notssh/videocdn-api/
 cd videocdn-api
