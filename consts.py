@@ -20,11 +20,6 @@ database_url: Optional[str] = None  # DB will not be used, analytics will not be
 # Use with any asynchronous connector compatible with SQLAlchemy (for example, aiosqlite (SQLite), asyncpg (PSQL))
 
 # [Log Settings]
-logs_enabled: bool = True
 logs_dir: str = './logs'
 logs_rotating_size: int = 1048576
 logs_backup_count: int = 5
-
-# [Updates]
-check_updates: bool = True
-bot_version: str = 'v1'  # Don't edit this
