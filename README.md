@@ -15,7 +15,7 @@ Telegram-бот для поиска контента на videocdn.tv.
 - [videocdn-api](https://github.com/notssh/videocdn-api/)
 
 ## Установка и настройка
-- [Читать здесь](https://github.com/notssh/videocdn-bot/docs/install.md)
+- [Читать здесь](https://github.com/notssh/videocdn-bot/blob/main/docs/install.md)
 
 ## TODO
 - Более качественная обработка исключений
