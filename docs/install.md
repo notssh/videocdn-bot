@@ -11,7 +11,7 @@ cd videocdn-bot
 2. Создайте Python-venv; активируйте его.
 ```bash
 python3 -m venv venv
-venv/bin/activate
+source venv/bin/activate
 ```
 3. Клонируйте репозиторий [videocdn-api](https://github.com/notssh/videocdn-api/); установите зависимости для этого модуля;
 ```bash
