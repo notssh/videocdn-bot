@@ -162,11 +162,14 @@ async def update_show_media(message: types.Message, internal_id: int, kinopoisk_
         await message.edit_text('*Что-то пошло не так*', parse_mode=types.ParseMode.MARKDOWN)
         raise e
     if response.result:
-        message_text = ''
         if response.data:
             buttons = []
             if response.data:
+                message_text = ''
                 item = response.data[0]
+                kp = consts.get_posters_from_kinopoisk is True and item.kinopoisk_id is not None
+                if kp:
+                    message_text += md.hide_link(consts.kinopoisk_posters_url_format.format(item.kinopoisk_id))
                 if item.translations:
                     if len(item.translations) == 1:
                         translations = md.quote_html(item.translations[0])
@@ -176,10 +179,10 @@ async def update_show_media(message: types.Message, internal_id: int, kinopoisk_
                 else:
                     translations = "отсутствует"
                 if item.type == 'serial':
-                    message_text = f'<b>{(md.quote_html(item.title))}</b>\n' \
+                    message_text += f'<b>{(md.quote_html(item.title))}</b>\n' \
                                    f'{utils.format_links_html(item)}\n\n' \
                                    f'Оригинальное название: {md.quote_html(item.orig_title)}\n' \
-                                   f'Тип: {md.quote_html(item.type)}\n' \
+                                   f'Тип: сериал\n' \
                                    f'Сезонов: {item.seasons_count}\n' \
                                    f'Эпизодов: {item.episodes_count}\n' \
                                    f'Год: {item.year}\n' \
@@ -188,10 +191,10 @@ async def update_show_media(message: types.Message, internal_id: int, kinopoisk_
                                    f'Добавлен: {item.add}\n' \
                                    f'Обновлен: {item.update}\n'
                 else:
-                    message_text = f'<b>{(md.quote_html(item.title))}</b>\n' \
+                    message_text += f'<b>{(md.quote_html(item.title))}</b>\n' \
                                    f'{utils.format_links_html(item)}\n\n' \
                                    f'Оригинальное название: {md.quote_html(item.orig_title)}\n' \
-                                   f'Тип: {md.quote_html(item.type)}\n' \
+                                   f'Тип: фильм\n' \
                                    f'Год: {item.year}\n' \
                                    f'Качество: {md.quote_html(item.quality) if item.quality else "неизвестно"}\n' \
                                    f'Озвучка: {translations}\n' \
@@ -201,20 +204,22 @@ async def update_show_media(message: types.Message, internal_id: int, kinopoisk_
                     text="Смотреть на VideoCDN",
                     url=f"https:{item.iframe_src}"
                 ))
-            buttons.append(types.InlineKeyboardButton(
-                text="Назад",
-                callback_data=callback_search.new(
-                    action="switch_page",
-                    page=from_page,
-                    query=query,
-                    kinopoisk_id=0,
-                    internal_id=0
-                )
-            ))
-            keyboard = types.InlineKeyboardMarkup(row_width=1)
-            keyboard.add(*buttons)
-            await message.edit_text(message_text, parse_mode=types.ParseMode.HTML,
-                                    reply_markup=keyboard, disable_web_page_preview=True)
+                buttons.append(types.InlineKeyboardButton(
+                    text="Назад",
+                    callback_data=callback_search.new(
+                        action="switch_page",
+                        page=from_page,
+                        query=query,
+                        kinopoisk_id=0,
+                        internal_id=0
+                    )
+                ))
+                keyboard = types.InlineKeyboardMarkup(row_width=1)
+                keyboard.add(*buttons)
+                await message.edit_text(message_text,
+                                        parse_mode=types.ParseMode.HTML,
+                                        reply_markup=keyboard,
+                                        disable_web_page_preview=False if kp else True)
         else:
             await message.edit_text('*Нет результатов*', parse_mode=types.ParseMode.MARKDOWN)
 

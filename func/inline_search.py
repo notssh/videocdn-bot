@@ -54,6 +54,10 @@ async def inline_handler(query: types.InlineQuery):
                                                                     parse_mode=types.ParseMode.MARKDOWN))])
     articles = []
     for item in response.data:
+        message_text = ''
+        kp = consts.get_posters_from_kinopoisk is True and item.kinopoisk_id is not None
+        if kp:
+            message_text += md.hide_link(consts.kinopoisk_posters_url_format.format(item.kinopoisk_id))
         if item.translations:
             if len(item.translations) == 1:
                 translations = md.quote_html(item.translations[0])
@@ -63,43 +67,44 @@ async def inline_handler(query: types.InlineQuery):
         else:
             translations = "отсутствует"
         if item.type == 'serial':
-            message_text = f'<b>{(md.quote_html(item.title))}</b>\n' \
+            message_text += f'<b>{(md.quote_html(item.title))}</b>\n' \
                            f'{utils.format_links_html(item)}\n\n' \
                            f'Оригинальное название: {md.quote_html(item.orig_title)}\n' \
-                           f'Тип: {md.quote_html(item.type)}\n' \
+                           f'Тип: сериал\n' \
                            f'Сезонов: {item.seasons_count}\n' \
                            f'Эпизодов: {item.episodes_count}\n' \
                            f'Год: {item.year}\n' \
                            f'Качество: {md.quote_html(item.quality) if item.quality else "неизвестно"}\n' \
                            f'Озвучка: {translations}\n' \
                            f'Добавлен: {item.add}\n' \
-                           f'Обновлен: {item.update}\n' \
-                           f'{md.hlink("[Смотреть на VideoCDN]", f"https:{item.iframe_src}")}\n\n'
+                           f'Обновлен: {item.update}\n'
         else:
-            message_text = f'<b>{(md.quote_html(item.title))}</b>\n' \
+            message_text += f'<b>{(md.quote_html(item.title))}</b>\n' \
                            f'{utils.format_links_html(item)}\n\n' \
                            f'Оригинальное название: {md.quote_html(item.orig_title)}\n' \
-                           f'Тип: {md.quote_html(item.type)}\n' \
+                           f'Тип: фильм\n' \
                            f'Год: {item.year}\n' \
                            f'Качество: {md.quote_html(item.quality) if item.quality else "неизвестно"}\n' \
                            f'Озвучка: {translations}\n' \
                            f'Добавлен: {item.add}\n' \
-                           f'Обновлен: {item.update}\n' \
-                           f'{md.hlink("[Смотреть на VideoCDN]", f"https:{item.iframe_src}")}\n\n'
-        # keyboard = types.InlineKeyboardMarkup(row_width=1)
-        # keyboard.add(types.InlineKeyboardButton(
-        #     text="Смотреть на VideoCDN",
-        #     url=f"https:{item.iframe_src}"))
-        # Нельзя так с инлайном, увы
+                           f'Обновлен: {item.update}\n'
+        keyboard = types.InlineKeyboardMarkup(row_width=1)
+        keyboard.add(types.InlineKeyboardButton(
+            text="Смотреть на VideoCDN",
+            url=f"https:{item.iframe_src}"))
+        thumb_url = consts.kinopoisk_posters_url_format.format(item.kinopoisk_id) if kp else None
         articles.append(types.InlineQueryResultArticle(
-            id=item.id,
+            id=item.kinopoisk_id if item.kinopoisk_id else item.id,
             title=f'{item.title} ({item.year.year})',
             description=item.type.capitalize(),
             hide_url=False,
             input_message_content=types.InputTextMessageContent(
                 message_text=message_text,
-                parse_mode=types.ParseMode.HTML, disable_web_page_preview=True,
-            )))
+                parse_mode=types.ParseMode.HTML, disable_web_page_preview=False if kp else True,
+            ),
+            reply_markup=keyboard,
+            thumb_url=thumb_url
+        ))
     await query.answer(articles, cache_time=60, is_personal=True)
 
 
