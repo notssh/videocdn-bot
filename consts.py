@@ -13,6 +13,10 @@ videocdn_custom_settings: bool = False
 videocdn_proxy_list: List[str] = []  # any aiohttp compatible proxies (HTTP and some HTTPS). When requesting the API, a random one will be selected from this list
 videocdn_client_headers: dict = {}  # Do not specify access_token there, it's always added automatically as GET parameter
 videocdn_api_server: str = 'https://videocdn.tv/api'
+  
+# [Kinopoisk movie posters]
+get_posters_from_kinopoisk: bool = True
+kinopoisk_posters_url_format: str = 'https://st.kp.yandex.net/images/film_big/{0}.jpg'  # Kinopoisk ID will be inserted instead of {0}
 
 # [Analytics Database]
 database_url: Optional[str] = None  # DB will not be used, analytics will not be collected
